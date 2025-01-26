@@ -88,4 +88,35 @@ class Solution {
         return res;                            
     }
 }
+Example 2:
+Roman to Integer
+
+class Solution {
+    public int romanToInt(String s) {
+        int[] values = new int[26]; // Array for storing values of Roman numerals
+        values['I' - 'A'] = 1;
+        values['V' - 'A'] = 5;
+        values['X' - 'A'] = 10;
+        values['L' - 'A'] = 50;
+        values['C' - 'A'] = 100;
+        values['D' - 'A'] = 500;
+        values['M' - 'A'] = 1000;
+
+        int result = 0;
+        int prev = 0; // Variable to track the previous value
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int current = values[s.charAt(i) - 'A'];
+            if (current < prev) {
+                result -= current; // Subtract if current is less than previous
+            } else {
+                result += current; // Add otherwise
+            }
+            prev = current; // Update previous value
+        }
+
+        return result;
+    }
+}
+
 ****************************************************************************************************************************************
